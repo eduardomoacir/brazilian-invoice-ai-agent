@@ -59,3 +59,10 @@ python integration/python/extract_invoice.py \
   --file examples/input/sample.pdf \
   --fallback-schema schema.json
 ```
+
+## Soft Consistency Check
+
+The script logs a warning (without failing) when:
+- `subtotal_itens_centavos` differs from `sum(itens[].valor_total_item_centavos)`
+
+This is intentional for production safety and contest transparency.

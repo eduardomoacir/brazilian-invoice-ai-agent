@@ -18,14 +18,34 @@
       "quantidade": 1,
       "valor_unitario_centavos": 350000,
       "valor_total_item_centavos": 350000
+    },
+    {
+      "descricao": "Hospedagem Premium Anual",
+      "quantidade": 1,
+      "valor_unitario_centavos": 120000,
+      "valor_total_item_centavos": 120000
+    },
+    {
+      "descricao": "Suporte Tecnico Mensal",
+      "quantidade": 3,
+      "valor_unitario_centavos": 30000,
+      "valor_total_item_centavos": 90000
     }
   ],
   "tributos": [
     {
       "tipo": "ISS",
       "valor_centavos": 17500
+    },
+    {
+      "tipo": "PIS",
+      "valor_centavos": 5775
+    },
+    {
+      "tipo": "COFINS",
+      "valor_centavos": 26600
     }
   ],
-  "subtotal_itens_centavos": 350000,
-  "valor_total_fatura_centavos": 350000
+  "subtotal_itens_centavos": 560000,
+  "valor_total_fatura_centavos": 586675
 }

@@ -38,20 +38,32 @@ Never commit real API keys.
 
 ## How To Use
 
-### Option A: LlamaCloud UI
+### Option A: Quick Start (Recommended for Judges)
+Run the Python integration only:
+
+```bash
+cd integration/python
+pip install -r requirements.txt
+python extract_invoice.py --file ../../examples/input/your_invoice.pdf --agent-name "Nota Fiscal"
+```
+
+Expected output:
+- `examples/output/out.json`
+
+### Option B: LlamaCloud UI
 1. Open your LlamaCloud agent (`Nota Fiscal`).
 2. Upload a sample invoice document.
 3. Run extraction.
 4. Compare result with `schema.json` and `examples/output/output.sample.json`.
 
-### Option B: Programmatic API
-- Python example: `integration/python/`
-- Laravel 12 example: `integration/laravel/`
+### Option C: Optional Production Integration
+- Python reference: `integration/python/` (primary)
+- Laravel 12 wrapper: `integration/laravel/` (optional)
 
-Both are designed so API endpoint details can be adjusted in one place.
+Laravel is intentionally isolated and optional for contest evaluation.
 
 ## Demo
-Quick local demo with Python:
+Contest demo path (Python-first):
 
 ```bash
 cd integration/python
@@ -64,6 +76,9 @@ Expected output file:
 
 A reference output is available at:
 - `examples/output/output.sample.json`
+- `examples/output/output.full.json`
+
+Optional Laravel demo is documented in `integration/laravel/README.md`.
 
 ## Repository Contents
 - `README.md`: contest-facing explanation and usage.
@@ -71,7 +86,7 @@ A reference output is available at:
 - `examples/input/`: place local test files here (do not commit sensitive docs).
 - `examples/output/`: sample output JSON.
 - `integration/python/`: official SDK usage with CLI script.
-- `integration/laravel/`: Laravel 12 service/controller/request/DTO integration.
+- `integration/laravel/`: optional Laravel 12 integration wrapper.
 - `docs/architecture.md`: design and data flow.
 - `docs/security.md`: secure production guidance.
 - `docs/submission.md`: contest submission checklist.

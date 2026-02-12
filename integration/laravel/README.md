@@ -1,5 +1,7 @@
 # Laravel 12 Integration
 
+This integration is optional and intended as a production wrapper around the Python extractor.
+
 Laravel uses a safe runner pattern:
 1. Validate upload.
 2. Store temporary file in `storage/app/tmp`.

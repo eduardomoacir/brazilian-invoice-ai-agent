@@ -1,14 +1,14 @@
 # Architecture
 
 ## Overview
-This repository uses a published LlamaCloud agent as the primary extraction path, with local schema fallback only when agent execution is unavailable.
+This repository uses a published LlamaCloud agent as the primary extraction path, with local schema fallback only when agent execution is unavailable. Python CLI is the canonical contest flow; Laravel is an optional production wrapper.
 
 ## Components
 1. **Input Upload Layer**
-   - Python CLI receives local file path.
-   - Laravel API receives multipart upload, validates file, and stores temporary file.
+   - Python CLI receives local file path (primary).
+   - Laravel API receives multipart upload, validates file, and stores temporary file (optional).
 2. **Runner Layer**
-   - Laravel command `llama:extract-invoice` executes Python script.
+   - Laravel command `llama:extract-invoice` executes Python script (optional).
    - Runner service captures command output and returns JSON.
 3. **LlamaExtract Layer**
    - Official Python SDK (`llama-cloud-services`) loads the published agent (`Nota Fiscal`).

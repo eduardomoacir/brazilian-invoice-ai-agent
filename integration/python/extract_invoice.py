@@ -106,6 +106,18 @@ def main() -> int:
             raise ValueError("Extraction output is not a JSON object.")
 
         normalized = sanitize_extracted_payload(raw)
+        subtotal_calculado = sum(
+            int(item.get("valor_total_item_centavos", 0))
+            for item in normalized.get("itens", [])
+            if isinstance(item, dict)
+        )
+        subtotal_extraido = int(normalized.get("subtotal_itens_centavos", 0))
+        if subtotal_calculado != subtotal_extraido:
+            print(
+                f"Warning: subtotal mismatch (calculated={subtotal_calculado}, extracted={subtotal_extraido})",
+                file=sys.stderr,
+            )
+
         output_file.write_text(
             json.dumps(normalized, ensure_ascii=False, indent=2),
             encoding="utf-8",
