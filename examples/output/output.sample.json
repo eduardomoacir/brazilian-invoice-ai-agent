@@ -1,0 +1,41 @@
+{
+  "numero_fatura": "NF-2026-000123",
+  "data_emissao": "2026-01-31",
+  "data_vencimento": "2026-02-10",
+  "empresa_emissora": {
+    "nome": "Comercial Exemplo LTDA",
+    "cnpj": "12.345.678/0001-99",
+    "endereco": "Av Paulista, 1000, Sao Paulo - SP"
+  },
+  "cliente": {
+    "nome": "Cliente ABC SA",
+    "cnpj": "98.765.432/0001-11",
+    "endereco": "Rua das Flores, 55, Curitiba - PR"
+  },
+  "itens": [
+    {
+      "descricao": "Servico de consultoria",
+      "quantidade": 2,
+      "valor_unitario_centavos": 150000,
+      "valor_total_item_centavos": 300000
+    },
+    {
+      "descricao": "Suporte tecnico mensal",
+      "quantidade": 1,
+      "valor_unitario_centavos": 85000,
+      "valor_total_item_centavos": 85000
+    }
+  ],
+  "tributos": [
+    {
+      "tipo": "ISS",
+      "valor_centavos": 19250
+    },
+    {
+      "tipo": "PIS",
+      "valor_centavos": 2500
+    }
+  ],
+  "subtotal_itens_centavos": 385000,
+  "valor_total_fatura_centavos": 385000
+}
