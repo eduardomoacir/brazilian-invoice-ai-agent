@@ -36,6 +36,10 @@ Set these before running any integration:
 
 Never commit real API keys.
 
+## LlamaCloud Agent Link
+- Agent name: `Nota Fiscal`
+- Agent URL: `PASTE_YOUR_LLAMA_CLOUD_AGENT_URL_HERE`
+
 ## How To Use
 
 ### Option A: Quick Start (Recommended for Judges)
@@ -92,10 +96,18 @@ Optional Laravel demo is documented in `integration/laravel/README.md`.
 - `docs/submission.md`: contest submission checklist.
 
 ## Screenshots
-Add screenshots before submission:
-- LlamaCloud agent configuration screen.
-- Extraction run screen with sample result.
-- Optional side-by-side source invoice vs JSON output.
+Add screenshots before submission (recommended filenames below):
+- `docs/assets/screenshots/agent-config.png`: LlamaCloud agent configuration screen.
+- `docs/assets/screenshots/extraction-run.png`: extraction run with JSON result.
+- `docs/assets/screenshots/source-vs-json.png`: optional side-by-side source vs output.
+
+Example markdown to enable after adding files:
+
+```md
+![Agent Config](docs/assets/screenshots/agent-config.png)
+![Extraction Run](docs/assets/screenshots/extraction-run.png)
+![Source vs JSON](docs/assets/screenshots/source-vs-json.png)
+```
 
 ## Short Portuguese Section
 Este repositorio demonstra extracao de nota fiscal brasileira com LlamaExtract, padronizando datas em ISO e valores monetarios em centavos para uso seguro em producao.
