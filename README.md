@@ -112,6 +112,11 @@ Example markdown to enable after adding files:
 ## Short Portuguese Section
 Este repositorio demonstra extracao de nota fiscal brasileira com LlamaExtract, padronizando datas em ISO e valores monetarios em centavos para uso seguro em producao.
 
+## Contact
+- Name: Eduardo Moacir
+- Email: desenvolvimento@eduardosites.com.br
+- GitHub: https://github.com/eduardomoacir
+
 ## License
 MIT (`LICENSE`).
 
