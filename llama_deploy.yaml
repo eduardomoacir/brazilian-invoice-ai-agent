@@ -1,0 +1,6 @@
+version: "1"
+name: brazilian-invoice-ai-agent
+entrypoint: integration/python/extract_invoice.py
+runtime:
+  type: python
+  python_version: "3.11"
