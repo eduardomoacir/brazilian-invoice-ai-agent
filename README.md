@@ -54,6 +54,11 @@ copy ..\..\.env.example ..\..\.env  # PowerShell/CMD on Windows
 python extract_invoice.py --file ../../examples/input/your_invoice.pdf --agent-name "Nota Fiscal"
 ```
 
+Path note:
+- `--file` accepts absolute paths and relative paths.
+- Relative paths are resolved first from current directory (`integration/python` in this flow), then from repository root.
+- Example from `integration/python`: `--file ../../examples/input/sample.pdf`
+
 Expected output:
 - `examples/output/out.json`
 
