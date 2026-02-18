@@ -48,6 +48,9 @@ Run the Python integration only:
 ```bash
 cd integration/python
 pip install -r requirements.txt
+copy ..\..\.env.example ..\..\.env  # PowerShell/CMD on Windows
+# or: cp ../../.env.example ../../.env
+# then edit ../../.env and set LLAMA_CLOUD_API_KEY
 python extract_invoice.py --file ../../examples/input/your_invoice.pdf --agent-name "Nota Fiscal"
 ```
 
