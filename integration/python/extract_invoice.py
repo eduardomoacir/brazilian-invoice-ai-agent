@@ -11,6 +11,7 @@ import warnings
 from pathlib import Path
 from typing import Any, Tuple
 
+from dotenv import load_dotenv
 from llama_cloud import ExtractConfig
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
@@ -21,7 +22,11 @@ from sanitizer import sanitize_extracted_payload
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Extract invoice JSON from a document file.")
     parser.add_argument("--file", required=True, help="Input file path.")
-    parser.add_argument("--agent-name", default="Nota Fiscal", help='Published agent name.')
+    parser.add_argument(
+        "--agent-name",
+        default=os.getenv("AGENT_NAME", "Nota Fiscal"),
+        help='Published agent name.',
+    )
     parser.add_argument(
         "--fallback-schema",
         default="../../schema.json",
@@ -40,6 +45,28 @@ def resolve_path(raw_path: str, base_dir: Path) -> Path:
     if path.is_absolute():
         return path
     return (base_dir / path).resolve()
+
+
+def resolve_input_path(raw_path: str) -> Path:
+    path = Path(raw_path).expanduser()
+    if path.is_absolute():
+        return path
+    cwd_candidate = (Path.cwd() / path).resolve()
+    if cwd_candidate.exists():
+        return cwd_candidate
+    return (repo_root() / path).resolve()
+
+
+def load_env_files() -> None:
+    script_dir = Path(__file__).resolve().parent
+    candidates = [
+        repo_root() / ".env",
+        script_dir / ".env",
+        Path.cwd() / ".env",
+    ]
+    for env_file in candidates:
+        if env_file.exists():
+            load_dotenv(env_file, override=False)
 
 
 def get_run_data(run_obj: Any) -> Any:
@@ -84,13 +111,14 @@ def run_agent_first(extractor: LlamaExtract, file_path: Path, agent_name: str, f
 
 
 def main() -> int:
+    load_env_files()
     args = parse_args()
 
     if not os.getenv("LLAMA_CLOUD_API_KEY"):
         print("Error: LLAMA_CLOUD_API_KEY is not set.", file=sys.stderr)
         return 1
 
-    input_file = resolve_path(args.file, repo_root())
+    input_file = resolve_input_path(args.file)
     if not input_file.exists() or not input_file.is_file():
         print(f"Error: input file not found: {input_file}", file=sys.stderr)
         return 1

@@ -1,3 +1,4 @@
 llama-cloud-services>=0.6.93
 llama-cloud>=0.1.46
+python-dotenv>=1.0.1
 # argparse is part of Python standard library.
