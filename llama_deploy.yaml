@@ -1,6 +1,7 @@
-version: "1"
 name: brazilian-invoice-ai-agent
-entrypoint: integration/python/extract_invoice.py
-runtime:
-  type: python
-  python_version: "3.11"
+workflows:
+  default: integration.python.workflow:invoice_workflow
+env_files:
+  - .env
+required_env_vars:
+  - LLAMA_CLOUD_API_KEY
