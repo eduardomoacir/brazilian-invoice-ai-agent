@@ -1,0 +1,14 @@
+[project]
+name = "brazilian-invoice-ai-agent"
+version = "0.1.0"
+description = "Brazilian invoice extraction workflow for LlamaCloud deployment."
+requires-python = ">=3.11"
+dependencies = [
+  "llama-cloud-services>=0.6.93",
+  "llama-cloud>=0.1.46",
+  "python-dotenv>=1.0.1",
+]
+
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
