@@ -54,6 +54,32 @@ def main() -> int:
     assert payload["tributos"][0]["valor_centavos"] == 17500
     assert payload["subtotal_itens_centavos"] == 560000
     assert payload["valor_total_fatura_centavos"] == 586675
+    assert payload["itens"][0]["descricao"] == "Servico A"
+
+    mojibake_payload = sanitize_extracted_payload(
+        {
+            "numero_fatura": "X",
+            "data_emissao": "2026-01-01",
+            "data_vencimento": "2026-01-02",
+            "empresa_emissora": {
+                "nome": "Tech SoluÃ§Ãµes Brasil Ltda",
+                "cnpj": "12.345.678/0001-90",
+                "endereco": "Rua das Tecnologias, 1500 â FlorianÃ³polis â SC",
+            },
+            "cliente": {
+                "nome": "ContÃ¡bil Moderna",
+                "cnpj": "98.765.432/0001-55",
+                "endereco": "Av. Empresarial, 220 â FlorianÃ³polis â SC",
+            },
+            "itens": [],
+            "tributos": [],
+            "subtotal_itens_centavos": 0,
+            "valor_total_fatura_centavos": 0,
+        }
+    )
+    assert mojibake_payload["empresa_emissora"]["nome"] == "Tech Soluções Brasil Ltda"
+    assert mojibake_payload["cliente"]["nome"] == "Contábil Moderna"
+    assert "Florianópolis" in mojibake_payload["cliente"]["endereco"]
 
     print("sanitizer-test-ok")
     return 0

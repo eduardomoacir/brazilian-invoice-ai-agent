@@ -23,6 +23,7 @@ ITEM_KEYS = {
     "valor_total_item_centavos",
 }
 TAX_KEYS = {"tipo", "valor_centavos"}
+MOJIBAKE_MARKERS = ("Ã", "Â", "Ð", "�")
 
 
 def normalize_key(key: str) -> str:
@@ -81,7 +82,21 @@ def to_int(value: Any, default: int = 0) -> int:
 def _as_string(value: Any) -> str:
     if value is None:
         return ""
-    return str(value).strip()
+    return _fix_mojibake(str(value).strip())
+
+
+def _fix_mojibake(text: str) -> str:
+    if text == "":
+        return text
+    if not any(marker in text for marker in MOJIBAKE_MARKERS):
+        return text
+    try:
+        fixed = text.encode("latin-1").decode("utf-8")
+    except UnicodeError:
+        return text
+    original_noise = sum(text.count(marker) for marker in MOJIBAKE_MARKERS)
+    fixed_noise = sum(fixed.count(marker) for marker in MOJIBAKE_MARKERS)
+    return fixed if fixed_noise < original_noise else text
 
 
 def _sanitize_party(value: Any) -> Dict[str, str]:
